@@ -15,7 +15,6 @@ def main():
         pass
     except Exception as exception:
         app.log('Exception: {}'.format(exception), color='[R1]')
-    finally: exit()
 
 if __name__ == '__main__':
     main()

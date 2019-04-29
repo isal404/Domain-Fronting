@@ -35,13 +35,12 @@ class domain_fronting(threading.Thread):
                             socket_tunnel.sendall(data)
                         elif sock is socket_tunnel:
                             socket_client.sendall(data)
-                            if receive <= 32:
+                            if receive <= 25:
                                 receive += 1
-                                if receive == 32: self.log('Connected [Y2]({} port {})'.format(self.proxy_host, self.proxy_port), color='[Y1]')
+                                if receive == 25: self.log('Connected [Y2]({} port {})'.format(self.proxy_host, self.proxy_port), color='[Y1]')
                         timeout = 0
                     except: break
             if timeout == 30: break
-        if receive == 32: self.log('Connection closed [R2]({} port {})'.format(self.proxy_host, self.proxy_port), color='[R1]')
 
     def run(self):
         try:
