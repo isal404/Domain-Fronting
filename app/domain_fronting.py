@@ -41,6 +41,7 @@ class domain_fronting(threading.Thread):
                         timeout = 0
                     except: break
             if timeout == 30: break
+        if receive == 32: self.log('Connection closed [R2]({} port {})'.format(self.proxy_host, self.proxy_port), color='[R1]')
 
     def run(self):
         try:
