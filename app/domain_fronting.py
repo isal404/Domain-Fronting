@@ -51,10 +51,11 @@ class domain_fronting(threading.Thread):
             self.socket_tunnel.connect((str(self.proxy_host), int(self.proxy_port)))
             self.socket_client.sendall(b'HTTP/1.1 200 OK\r\n\r\n')
             self.handler(self.socket_tunnel, self.socket_client, self.buffer_size)
-            self.socket_client.close()
-            self.socket_tunnel.close()
-            self.log('Connection closed [R2]({} port {})'.format(self.proxy_host, self.proxy_port), color='[R1]')
+            # self.log('Connection closed [R2]({} port {})'.format(self.proxy_host, self.proxy_port), color='[R1]')
         except OSError:
             self.log('Error ({} port {})'.format(self.proxy_host, self.proxy_port), color='[R2]')
         except Exception as exception:
             self.log('Error ({} port {}) ({})'.format(self.proxy_host, self.proxy_port, exception), color='[R1]')
+        finally:
+            self.socket_client.close()
+            self.socket_tunnel.close()
