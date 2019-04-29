@@ -11,6 +11,8 @@ def main():
         inject_host = config['inject_host']
         inject_port = config['inject_port']
         app.inject(str(inject_host), int(inject_port)).start()
+    except KeyboardInterrupt:
+        pass
     except Exception as exception:
         app.log('Exception: {}'.format(exception), color='[R1]')
 
